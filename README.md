@@ -1,1 +1,1 @@
-# ML_practice_from_class1
+# This repository is Machine Learning practice material from Python Data Analysis Class
