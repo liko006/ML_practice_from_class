@@ -54,3 +54,23 @@ report = metrics.classification_report(test_label, pre)
 
 print("정확도: ", score)
 print("리포트 = \n", report)
+
+# 비만도(BMI) 그래프
+import matplotlib.pyplot as plt
+import pandas as pd
+
+tbl = pd.read_csv('./0801/bmi.csv', index_col=2)
+
+fig = plt.figure()
+ax = fig.add_subplot(1,1,1)
+
+def scatter(lbl, color):
+    b = tbl.loc[lbl]
+    ax.scatter(b['weight'], b['height'], c=color, label=lbl)
+    
+scatter('fat', 'red')
+scatter('normal', 'green')
+scatter('thin', 'blue')
+ax.legend()
+plt.savefig('bmi-test.png')
+plt.show()
