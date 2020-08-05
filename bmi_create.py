@@ -74,4 +74,3 @@ scatter('thin', 'blue')
 ax.legend()
 plt.savefig('bmi-test.png')
 plt.show()
-
