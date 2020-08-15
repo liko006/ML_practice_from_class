@@ -1,6 +1,7 @@
 import pandas as pd
 import tensorflow as tf
 import numpy as np
+tf.compat.v1.disable_eager_execution()
 
 # data load
 data = pd.read_csv('./data/ozone.csv', sep=',')
@@ -26,12 +27,12 @@ x_data = df[['Solar.R_Stan', 'Wind_Stan', 'Temp_Stan']].values
 y_data = df[['Ozone_Stan']].values.reshape(-1,1)
 
 # placeholder
-X = tf.placeholder(shape=[None,3], dtype=tf.float32)
-Y = tf.placeholder(shape=[None,1], dtype=tf.float32)
+X = tf.compat.v1.placeholder(shape=[None,3], dtype=tf.float32)
+Y = tf.compat.v1.placeholder(shape=[None,1], dtype=tf.float32)
 
 # Weight & bias
-W = tf.Variable(tf.random_normal([3,1]), name='weight')
-b = tf.Variable(tf.random_normal([1]), name='bias')
+W = tf.Variable(tf.random.normal([3,1]), name='weight')
+b = tf.Variable(tf.random.normal([1]), name='bias')
 
 # Hypothesis
 H = tf.matmul(X,W) + b
@@ -40,11 +41,11 @@ H = tf.matmul(X,W) + b
 cost = tf.reduce_mean(tf.square(H-Y))
 
 # train
-train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost)
+train = tf.compat.v1.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost)
 
 # Session & 초기화
-sess = tf.Session()
-sess.run(tf.global_variables_initializer())
+sess = tf.compat.v1.Session()
+sess.run(tf.compat.v1.global_variables_initializer())
 
 # 학습
 for step in range(3000):
@@ -55,4 +56,4 @@ for step in range(3000):
 # prediction
 # Solar.R, Wind, Temp
 input_data = [[190.0, 7.4, 67.0]]
-display(sess.run(H, feed_dict={X:input_data}))
+sess.run(H, feed_dict={X:input_data})
