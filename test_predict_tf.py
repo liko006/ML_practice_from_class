@@ -1,27 +1,28 @@
 # 주어진 데이터로 7시간 공부하면 몇점을 받을지 예측
 import tensorflow as tf
+tf.compat.v1.disable_eager_execution()
 
 # training data set
 x_data = [1,2,5,8,10]
 y_data = [5,15,68,80,95]
 
 # placeholder 설정 (이 값을 설정하지 않으면 고정값만 사용해야한다)
-x = tf.placeholder(dtype=tf.float32)
-y = tf.placeholder(dtype=tf.float32)
+x = tf.compat.v1.placeholder(dtype=tf.float32)
+y = tf.compat.v1.placeholder(dtype=tf.float32)
 
-W = tf.Variable(tf.random_normal([1]), name='weight')
-b = tf.Variable(tf.random_normal([1]), name='bias')
+W = tf.Variable(tf.random.normal([1]), name='weight')
+b = tf.Variable(tf.random.normal([1]), name='bias')
 
 H = (W * x) + b  
 
 cost = tf.reduce_mean(tf.square(H-y))
 
-optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.01)
+optimizer = tf.compat.v1.train.GradientDescentOptimizer(learning_rate=0.01)
 train = optimizer.minimize(cost)
 
-sess = tf.Session()
+sess = tf.compat.v1.Session()
 
-sess.run(tf.global_variables_initializer())
+sess.run(tf.compat.v1.global_variables_initializer())
 
 for step in range(3000):
     _, cost_val = sess.run([train, cost], feed_dict={x:x_data, y:y_data})
