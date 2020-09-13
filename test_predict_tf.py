@@ -31,3 +31,4 @@ for step in range(3000):
 
 # 예측
 print("예측값: ", sess.run(H, feed_dict={x:7}))
+
