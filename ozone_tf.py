@@ -57,4 +57,3 @@ for step in range(3000):
 # Solar.R, Wind, Temp
 input_data = [[190.0, 7.4, 67.0]]
 display(sess.run(H, feed_dict={X:input_data}))
-
