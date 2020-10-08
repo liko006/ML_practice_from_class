@@ -7,6 +7,7 @@ url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
 savefile = 'd:/weekend/data/iris3.csv'
 req.urlretrieve(url, savefile)
 print("저장되었습니다")
+print()
 
 csv = pd.read_csv(savefile, encoding='utf-8')
 
