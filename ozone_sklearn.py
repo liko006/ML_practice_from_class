@@ -12,6 +12,7 @@ lm = linear_model.LinearRegression()
 lm.fit(X,y)
 print('W의 값: {}'.format(lm.coef_))
 print('intercept : {}'.format(lm.intercept_))
+print()
 
 predictions = lm.predict([[190.0, 7.4, 67.0]])
 print('예측값: {}'.format(predictions))
